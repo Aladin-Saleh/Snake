@@ -16,9 +16,13 @@ public class Screen extends JFrame {
 
         Game gme = new Game();
         this.add(gme);
+        Control cntrl = new Control(gme);
+        this.addKeyListener(cntrl);
+
+        Mouv mve = new Mouv(gme,cntrl);
 
 
-        this.addKeyListener(new Control(gme));
+
 
 
 

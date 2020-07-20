@@ -3,6 +3,7 @@ import java.awt.event.KeyListener;
 
 public class Control implements KeyListener {
     private Game gameScren;
+    private int lastCntrl = 0;//1 = Gauche, 2 = Droite, 3 = Bas, 4 = Haut
 
     public Control(Game scn)
     {
@@ -17,38 +18,27 @@ public class Control implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
 
-        if (gameScren.getyPos() == 810 || gameScren.getyPos() == 90 || gameScren.getxPos() == 810 || gameScren.getxPos() == 90)
-        {
-            gameScren.setyPos(0);
-            gameScren.repaint();
-            System.out.println("Bord ! ");
-        }else
-        {
             if (e.getKeyCode() == KeyEvent.VK_LEFT)
             {
-                gameScren.setxPos(-60);
-                gameScren.repaint();
+                this.lastCntrl = 1;
                 System.out.println("Gauche ! ");
             }
 
             if (e.getKeyCode() == KeyEvent.VK_RIGHT)
             {
-                gameScren.setxPos(60);
-                gameScren.repaint();
+                this.lastCntrl = 2;
                 System.out.println("Droite ! ");
             }
 
             if (e.getKeyCode() == KeyEvent.VK_UP)
             {
-                gameScren.setyPos(-60);
-                gameScren.repaint();
+                this.lastCntrl = 4;
                 System.out.println("Haut ! ");
             }
 
             if (e.getKeyCode() == KeyEvent.VK_DOWN)
             {
-                gameScren.setyPos(60);
-                gameScren.repaint();
+                this.lastCntrl = 3;
                 System.out.println("Bas ! ");
             }
         }
@@ -56,10 +46,14 @@ public class Control implements KeyListener {
 
 
 
-    }
+
 
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    public int getLastCntrl() {
+        return lastCntrl;
     }
 }
